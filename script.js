@@ -124,9 +124,16 @@ function resetAutoScroll(){ stopAutoScroll(); startAutoScroll(); }
 if(photosEl){
   slideCount = photosEl.children.length;
   createIndicators();
-  startAutoScroll();
-  photosEl.addEventListener('mouseenter', stopAutoScroll);
-  photosEl.addEventListener('mouseleave', startAutoScroll);
+  // Si hay vídeos en la galería, desactivar el desplazamiento automático
+  const hasVideo = photosEl.querySelector('video') !== null;
+  if(!hasVideo){
+    startAutoScroll();
+    photosEl.addEventListener('mouseenter', stopAutoScroll);
+    photosEl.addEventListener('mouseleave', startAutoScroll);
+  } else {
+    // No iniciar autoplay si hay vídeos (el usuario los reproducirá manualmente)
+    console.log('Autoplay desactivado: se han detectado vídeos en la galería');
+  }
   window.addEventListener('resize', ()=> goToSlide(currentIndex));
 }
 
