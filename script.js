@@ -76,3 +76,75 @@ playBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') playBtn.click(); 
 
 // Helpful: open console instructions
 console.log('Edítalo: cambia targetDate en script.js, reemplaza imágenes en index.html y pon la canción en el atributo src del <audio id="bgMusic">.');
+
+// ----- SIMPLE CAROUSEL -----
+const photosEl = document.querySelector('.photos');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+const indicatorsEl = document.querySelector('.carousel-indicators');
+let slideCount = photosEl ? photosEl.children.length : 0;
+let currentIndex = 0;
+let autoScrollInterval;
+
+function createIndicators(){
+  if(!indicatorsEl) return;
+  indicatorsEl.innerHTML = '';
+  for(let i=0;i<slideCount;i++){
+    const btn = document.createElement('button');
+    if(i===0) btn.classList.add('active');
+    btn.addEventListener('click', ()=>{ goToSlide(i); resetAutoScroll(); });
+    indicatorsEl.appendChild(btn);
+  }
+}
+
+function updateIndicators(){
+  if(!indicatorsEl) return;
+  Array.from(indicatorsEl.children).forEach((b,idx)=> b.classList.toggle('active', idx===currentIndex));
+}
+
+function goToSlide(index){
+  if(!photosEl) return;
+  if(index < 0) index = slideCount - 1;
+  if(index >= slideCount) index = 0;
+  currentIndex = index;
+  // Pause any playing videos before sliding
+  Array.from(photosEl.querySelectorAll('video')).forEach(v=>{ try{ v.pause(); v.currentTime = 0; }catch(e){} });
+  const w = photosEl.clientWidth;
+  photosEl.scrollTo({ left: w * index, behavior: 'smooth' });
+  updateIndicators();
+}
+
+function nextSlide(){ goToSlide(currentIndex+1); }
+function prevSlide(){ goToSlide(currentIndex-1); }
+
+function startAutoScroll(){ autoScrollInterval = setInterval(nextSlide, 3500); }
+function stopAutoScroll(){ clearInterval(autoScrollInterval); }
+function resetAutoScroll(){ stopAutoScroll(); startAutoScroll(); }
+
+if(photosEl){
+  slideCount = photosEl.children.length;
+  createIndicators();
+  startAutoScroll();
+  photosEl.addEventListener('mouseenter', stopAutoScroll);
+  photosEl.addEventListener('mouseleave', startAutoScroll);
+  window.addEventListener('resize', ()=> goToSlide(currentIndex));
+}
+
+if(nextBtn) nextBtn.addEventListener('click', ()=>{ nextSlide(); resetAutoScroll(); });
+if(prevBtn) prevBtn.addEventListener('click', ()=>{ prevSlide(); resetAutoScroll(); });
+
+// Añadir comportamiento click-to-play a los vídeos
+if(photosEl){
+  Array.from(photosEl.children).forEach((child)=>{
+    if(child.tagName === 'VIDEO'){
+      // Click sobre el vídeo: alterna play/pause
+      child.addEventListener('click', ()=>{
+        if(child.paused){ child.play(); } else { child.pause(); }
+      });
+      // Cuando el vídeo se reproduce, parar autoplay del carrusel
+      child.addEventListener('play', ()=>{ stopAutoScroll(); });
+      child.addEventListener('pause', ()=>{ resetAutoScroll(); });
+    }
+  });
+}
+

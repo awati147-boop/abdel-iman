@@ -34,14 +34,32 @@
 
     <section class="gallery">
       <h3>Recuerdos</h3>
-      <div class="photos">
-        <img src="photos/foto1.jpg" alt="foto1">
-        <img src="photos/foto2.jpg" alt="foto2">
-        <img src="photos/foto3.jpg" alt="foto3">
-        <img src="photos/foto4.jpg" alt="foto4">
-        <img src="photos/foto5.jpg" alt="foto5">
-        <img src="photos/foto6.jpg" alt="foto6">
+      <div class="carousel" aria-label="Galería de recuerdos">
+        <button class="carousel-btn prev" aria-label="Anterior">◀</button>
+        <div class="photos">
+          <img src="photos/foto1.jpg" alt="foto1">
+          <img src="photos/foto2.jpg" alt="foto2">
+          <img src="photos/foto3.jpg" alt="foto3">
+          <img src="photos/foto4.jpg" alt="foto4">
+          <img src="photos/foto5.jpg" alt="foto5">
+          <img src="photos/foto6.jpg" alt="foto6">
+          <!-- Vídeos añadidos automáticamente -->
+          <video controls muted playsinline preload="metadata" poster="photos/foto1.jpg">
+            <source src="videos/video1.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+          <video controls muted playsinline preload="metadata" poster="photos/foto2.jpg">
+            <source src="videos/video2.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+          <video controls muted playsinline preload="metadata" poster="photos/foto3.jpg">
+            <source src="videos/video3.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+        </div>
+        <button class="carousel-btn next" aria-label="Siguiente">▶</button>
       </div>
+      <div class="carousel-indicators" aria-hidden="true"></div>
     </section>
 
     <section class="notes"> 
