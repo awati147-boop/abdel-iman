@@ -1,0 +1,57 @@
+📋 RESUMEN DE CAMBIOS REALIZADOS
+================================
+
+✅ COMPLETADO:
+- Fecha del countdown: 05/12/2025 00:00 (tu 2º aniversario)
+- Títulos personalizados: "Feliz 2º Aniversario" + "Abdel & Iman — 2 años juntos"
+- Texto principal: Dedicatoria romántica personalizada
+- Dedicatoria de Iman: Agregada en la sección "Tu dedicatoria"
+- 6 fotos: Copiadas a c:\Users\Abdel\Downloads\wbb\photos\ (foto1.jpg a foto6.jpg)
+- Estructura lista: carpetas photos/, music/ creadas
+- Instrucciones: README.md, SETUP.md e INSTRUCCIONES.html (visuales)
+
+⏳ PENDIENTE (sin bloques):
+- Descargar "Toto - Blue Love" y guardar en: c:\Users\Abdel\Downloads\wbb\music\blue-love.mp3
+  (Solo 1 archivo, toma 2 minutos)
+
+📂 ESTRUCTURA FINAL:
+wbb/
+├── 📄 index.html (página principal — LISTA)
+├── 📄 styles.css (estilos — LISTO)
+├── 📄 script.js (lógica — LISTO, fecha actualizada)
+├── 📄 README.md (guía principal)
+├── 📄 SETUP.md (instrucciones detalladas)
+├── 📄 INSTRUCCIONES.html (guía visual en navegador)
+├── 📁 photos/ (✓ 6 fotos copiadas)
+├── 📁 music/ (⏳ espera blue-love.mp3)
+└── 📁 images/ (originales, puedes eliminar después)
+
+🚀 PRÓXIMOS PASOS:
+
+1. Abre c:\Users\Abdel\Downloads\wbb\index.html en tu navegador
+   → Verás el sitio con las 6 fotos, textos y el countdown
+   → El botón de música no funcionará hasta que descargues blue-love.mp3
+
+2. Descarga "Toto - Blue Love" (https://youtu.be/TgYGVaL7bj4 o similar)
+   → Busca "Toto Blue Love mp3" en Google
+   → Descarga o usa un conversor (YouTubetoMP3.com, etc.)
+   → Guarda en: c:\Users\Abdel\Downloads\wbb\music\blue-love.mp3
+
+3. Recarga el navegador (F5) y prueba el botón "Reproducir música"
+
+4. Cuando esté todo listo, puedo:
+   → Publicarlo en GitHub Pages (URL pública: https://tuusuario.github.io/2-aniversario)
+   → O desplegarlo en Netlify (aún más rápido)
+
+💡 TIPS:
+- Abre INSTRUCCIONES.html en navegador para una guía visual y amigable
+- Todo está listo para publicar — solo falta la música
+- Puedo ayudarte a publicar cuando quieras (es 1 comando o 3 clicks en Netlify)
+
+📞 ¿QUÉ NECESITAS AHORA?
+A) Descargo la música yo (necesito permiso)
+B) Descargaas tú y me avisas cuando esté lista
+C) Publica ahora tal como está (sin música de momento)
+
+¡Tu sitio está casi listo! 🎉💕
+

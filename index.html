@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Feliz 2º aniversario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay">
+      <h1>Abdel & Iman</h1>
+      <p class="subtitle">2 años juntos — Feliz Aniversario</p>
+
+      <div id="countdown" class="countdown" aria-live="polite">
+        <div><span id="days">0</span><small>Días</small></div>
+        <div><span id="hours">00</span><small>Horas</small></div>
+        <div><span id="minutes">00</span><small>Min</small></div>
+        <div><span id="seconds">00</span><small>Seg</small></div>
+      </div>
+
+      <div class="controls">
+        <button id="playMusic">Reproducir música</button>
+        <button id="toggleConfetti">Activar confetti</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="message">
+      <h2>Mi amor,</h2>
+      <p id="lead">Hace 2 años iniciamos esta hermosa aventura juntos, y cada día contigo se siente como un sueño hecho realidad. Tus sonrisas iluminan mis días más oscuros, y tu amor me ha enseñado el verdadero significado de la felicidad. Gracias por ser mi cómplice, mi apoyo, mi razón de ser. No importa lo que venga, mientras esté contigo, todo será posible. Te amo más cada día que pasa. Iman, eres mi persona favorita. 💕</p>
+    </section>
+
+    <section class="gallery">
+      <h3>Recuerdos</h3>
+      <div class="photos">
+        <img src="photos/foto1.jpg" alt="foto1">
+        <img src="photos/foto2.jpg" alt="foto2">
+        <img src="photos/foto3.jpg" alt="foto3">
+        <img src="photos/foto4.jpg" alt="foto4">
+        <img src="photos/foto5.jpg" alt="foto5">
+        <img src="photos/foto6.jpg" alt="foto6">
+      </div>
+    </section>
+
+    <section class="notes">
+      <h3>Tu dedicatoria</h3>
+      <blockquote id="dedication">Abdel, cada momento contigo es un regalo. Eres mi razón de sonreír cada mañana. Juntos hemos construido recuerdos hermosos, y espero seguir haciéndolo por el resto de nuestras vidas. Te quiero infinitamente. — Iman 💕</blockquote>
+    </section>
+  </main>
+
+  <footer class="footer">Creado con ❤️ para nuestro 2º aniversario</footer>
+
+  <!-- Audio: para usar una canción local/video, pon la ruta en el atributo src -->
+  <audio id="bgMusic" loop src="music/blue-love.mp3"></audio>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

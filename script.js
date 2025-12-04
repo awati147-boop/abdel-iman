@@ -1,0 +1,78 @@
+// ----- CONFIG -----
+// Cambia esta fecha al día/horario de vuestro aniversario (formato: 'YYYY-MM-DDTHH:MM:SS')
+const targetDate = new Date('2025-12-05T00:00:00');
+
+// Si quieres reproducir una canción local, pon la ruta en bgMusic.src o deja vacío.
+const bgMusic = document.getElementById('bgMusic');
+
+// ----- COUNTDOWN -----
+function updateCountdown(){
+  const now = new Date();
+  const diff = targetDate - now;
+  if(diff <= 0){
+    document.getElementById('days').textContent = 0;
+    document.getElementById('hours').textContent = '00';
+    document.getElementById('minutes').textContent = '00';
+    document.getElementById('seconds').textContent = '00';
+    return;
+  }
+  const sec = Math.floor((diff/1000) % 60);
+  const min = Math.floor((diff/1000/60) % 60);
+  const hr = Math.floor((diff/1000/60/60) % 24);
+  const days = Math.floor(diff/1000/60/60/24);
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = String(hr).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(min).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// ----- MUSIC CONTROL -----
+const playBtn = document.getElementById('playMusic');
+playBtn.addEventListener('click', ()=>{
+  if(!bgMusic.src){
+    alert('No hay canción configurada. Edita script.js o pon la ruta en el elemento <audio id="bgMusic">.');
+    return;
+  }
+  if(bgMusic.paused){ bgMusic.play(); playBtn.textContent = 'Pausar música'; }
+  else { bgMusic.pause(); playBtn.textContent = 'Reproducir música'; }
+});
+
+// ----- SIMPLE CONFETTI (canvas) -----
+const confettiCanvas = document.getElementById('confettiCanvas');
+const ctx = confettiCanvas.getContext('2d');
+let W = confettiCanvas.width = window.innerWidth;
+let H = confettiCanvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{ W = confettiCanvas.width = window.innerWidth; H = confettiCanvas.height = window.innerHeight; });
+
+function random(min,max){ return Math.random()*(max-min)+min }
+class Particle{
+  constructor(){ this.reset(); }
+  reset(){
+    this.x = random(0,W); this.y = random(-H,-10);
+    this.w = random(6,12); this.h = random(8,16);
+    this.color = `hsl(${Math.floor(random(0,360))} 80% 60%)`;
+    this.vx = random(-0.5,0.5); this.vy = random(1,4);
+    this.r = random(0,360); this.rs = random(-4,4);
+  }
+  update(){ this.x += this.vx; this.y += this.vy; this.r += this.rs; if(this.y>H+20) this.reset(); }
+  draw(){ ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.r*Math.PI/180); ctx.fillStyle=this.color; ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h); ctx.restore(); }
+}
+const particles = Array.from({length:120}, ()=>new Particle());
+let confettiOn = false;
+function confettiLoop(){ ctx.clearRect(0,0,W,H); if(confettiOn){ particles.forEach(p=>{ p.update(); p.draw(); }); } requestAnimationFrame(confettiLoop); }
+confettiLoop();
+
+// Toggle confetti button
+const confBtn = document.getElementById('toggleConfetti');
+confBtn.addEventListener('click', ()=>{
+  confettiOn = !confettiOn;
+  confBtn.textContent = confettiOn ? 'Detener confetti' : 'Activar confetti';
+});
+
+// Accessibility: allow Enter to play music from keyboard when focused
+playBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') playBtn.click(); });
+
+// Helpful: open console instructions
+console.log('Edítalo: cambia targetDate en script.js, reemplaza imágenes en index.html y pon la canción en el atributo src del <audio id="bgMusic">.');

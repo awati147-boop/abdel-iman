@@ -1,0 +1,118 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  GUÍA PARA PUBLICAR EN GITHUB PAGES                        ║
+║                  URL FINAL: https://tuusuario.github.io/abdel-iman         ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+REQUISITOS:
+1. Cuenta en GitHub (si no tienes, crea una en github.com — es gratis)
+2. Git instalado en tu computadora (probablemente ya lo tienes)
+3. Los comandos de abajo listos para copiar/pegar
+
+PASO 1: Abre PowerShell y copia estos comandos (uno por uno)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Navega a la carpeta del proyecto
+cd "c:\Users\Abdel\Downloads\wbb"
+
+# Inicializa git (crea repositorio local)
+git init
+
+# Agrega todos los archivos
+git add .
+
+# Hace un commit (guarda los cambios locales)
+git commit -m "Sitio 2º aniversario Abdel & Iman"
+
+# Cambia el nombre de la rama a main (estándar de GitHub)
+git branch -M main
+
+PASO 2: Crea el repositorio en GitHub
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ve a github.com (inicia sesión si necesitas)
+2. Haz clic en el "+" en la esquina superior derecha > "New repository"
+3. Rellena:
+   - Nombre: abdel-iman
+   - Descripción: (opcional) "Sitio para nuestro 2º aniversario"
+   - Visibilidad: PUBLIC (debe ser público para que funcione Pages)
+4. Haz clic en "Create repository"
+5. Verás una página con comandos — copia la URL del repositorio (algo como):
+   https://github.com/TuUsuario/abdel-iman.git
+
+PASO 3: Vincula tu repositorio local con GitHub y sube los archivos
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+En PowerShell, copia y pega esto (reemplaza TuUsuario con tu username de GitHub):
+
+git remote add origin https://github.com/TuUsuario/abdel-iman.git
+git push -u origin main
+
+Esto te pedirá credenciales — tienes 2 opciones:
+
+OPCIÓN A: Usar GitHub CLI (recomendado, más seguro)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Si tienes GitHub CLI instalado, simplemente ejecuta:
+  gh auth login
+  (sigue las instrucciones)
+
+OPCIÓN B: Usar Personal Access Token (PAT)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Ve a github.com > Settings > Developer settings > Personal access tokens > Tokens (classic)
+2. Haz clic en "Generate new token (classic)"
+3. Dale un nombre: "abdel-iman-push"
+4. Marca: ☑ repo (acceso completo a repositorios)
+5. Haz clic en "Generate token"
+6. Copia el token (una larga cadena de caracteres)
+7. En PowerShell, cuando te pida contraseña, pega el token
+8. Presiona Enter
+
+PASO 4: Habilita GitHub Pages en el repositorio
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ve a tu repositorio en GitHub: https://github.com/TuUsuario/abdel-iman
+2. Haz clic en "Settings" (arriba a la derecha)
+3. En el menú izquierdo, busca "Pages"
+4. En "Source", elige:
+   - Branch: main
+   - Folder: / (root)
+5. Haz clic en "Save"
+
+GitHub tardará unos minutos (2-5) en generar el sitio.
+
+PASO 5: Accede a tu sitio
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Una vez completado, tu sitio estará disponible en:
+✅ https://TuUsuario.github.io/abdel-iman
+
+Reemplaza "TuUsuario" con tu username de GitHub.
+
+PRUEBA:
+1. Abre la URL en tu navegador
+2. Verás: Abdel & Iman, countdown, 6 fotos, música
+3. Comparte el enlace con Iman (será accesible desde cualquier dispositivo)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RESUMEN RÁPIDO (COPIAR Y PEGAR EN POWERSHELL):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd "c:\Users\Abdel\Downloads\wbb"
+git init
+git add .
+git commit -m "Sitio 2º aniversario Abdel & Iman"
+git branch -M main
+git remote add origin https://github.com/TuUsuario/abdel-iman.git
+git push -u origin main
+
+(Luego habilita Pages en GitHub.com)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¿PREGUNTAS?
+- Si algo no funciona, verifica que git esté instalado: git --version
+- Si no tienes GitHub, crea una cuenta en github.com (2 minutos)
+- Si necesitas ayuda con algún paso, avísame
+
+¡Tu sitio estará online en ~10 minutos! 🎉
+
