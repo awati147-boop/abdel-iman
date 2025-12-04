@@ -142,8 +142,30 @@ if(photosEl){
         if(child.paused){ child.play(); } else { child.pause(); }
       });
       // Cuando el vídeo se reproduce, parar autoplay del carrusel
-      child.addEventListener('play', ()=>{ stopAutoScroll(); });
-      child.addEventListener('pause', ()=>{ resetAutoScroll(); });
+      child.addEventListener('play', ()=>{
+        stopAutoScroll();
+        // Pausar música de fondo si está sonando
+        try{
+          if(window.bgMusic && !window.bgMusic.paused){
+            window.bgMusic.pause();
+            if(playBtn) playBtn.textContent = 'Reproducir música';
+          }
+        }catch(e){}
+      });
+      child.addEventListener('pause', ()=>{
+        resetAutoScroll();
+        // Reanudar música de fondo solo si antes estaba sonando y el usuario no la pausó manualmente
+        try{
+          if(window.bgMusic && window.bgMusic.paused){
+            // No forzamos autoplay en algunos navegadores; intentamos reanudar solo si el usuario había iniciado la música antes
+            // Si el botón muestra 'Pausar música' sabemos que el usuario la inició previamente
+            if(playBtn && playBtn.textContent === 'Pausar música'){
+              // intenta reproducir (puede ser bloqueado por el navegador si no hay interacción)
+              window.bgMusic.play().catch(()=>{});
+            }
+          }
+        }catch(e){}
+      });
     }
   });
 }
