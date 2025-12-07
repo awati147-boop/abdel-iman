@@ -1,32 +1,51 @@
 // ----- CONFIG -----
 // Cambia esta fecha al día/horario de vuestro aniversario (formato: 'YYYY-MM-DDTHH:MM:SS')
-const targetDate = new Date('2025-12-05T00:00:00');
+// Ahora usamos esta fecha como START_DATE para calcular tiempo transcurrido
+const startDate = new Date('2023-12-05T00:00:00'); // Cuando empezaron (2 años atrás)
 
 // Si quieres reproducir una canción local, pon la ruta en bgMusic.src o deja vacío.
 const bgMusic = document.getElementById('bgMusic');
 
-// ----- COUNTDOWN -----
+// ----- COUNTDOWN (tiempo transcurrido desde startDate) -----
 function updateCountdown(){
   const now = new Date();
-  const diff = targetDate - now;
+  const diff = now - startDate; // Diferencia positiva: tiempo transcurrido
   if(diff <= 0){
+    document.getElementById('years').textContent = 0;
+    document.getElementById('months').textContent = 0;
     document.getElementById('days').textContent = 0;
     document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
     return;
   }
-  const sec = Math.floor((diff/1000) % 60);
-  const min = Math.floor((diff/1000/60) % 60);
-  const hr = Math.floor((diff/1000/60/60) % 24);
-  const days = Math.floor(diff/1000/60/60/24);
+  
+  // Calcular años, meses, días y horas transcurridos
+  let tempDate = new Date(startDate);
+  let years = 0, months = 0;
+  
+  // Contar años completos
+  while(tempDate.getTime() + (365*24*60*60*1000) <= now.getTime()){
+    tempDate.setFullYear(tempDate.getFullYear() + 1);
+    years++;
+  }
+  
+  // Contar meses completos
+  while(tempDate.getTime() + (30*24*60*60*1000) <= now.getTime()){
+    tempDate.setMonth(tempDate.getMonth() + 1);
+    months++;
+  }
+  
+  // Calcular días y horas
+  const remainingTime = now - tempDate;
+  const days = Math.floor(remainingTime / (24*60*60*1000));
+  const hours = Math.floor((remainingTime % (24*60*60*1000)) / (60*60*1000));
+  
+  document.getElementById('years').textContent = years;
+  document.getElementById('months').textContent = months;
   document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = String(hr).padStart(2,'0');
-  document.getElementById('minutes').textContent = String(min).padStart(2,'0');
-  document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
 }
 updateCountdown();
-setInterval(updateCountdown,1000);
+setInterval(updateCountdown, 1000);
 
 // ----- MUSIC CONTROL -----
 const playBtn = document.getElementById('playMusic');
